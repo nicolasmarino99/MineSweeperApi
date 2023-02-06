@@ -4,9 +4,8 @@ class GamesController < ApplicationController
       @games = current_user.games.all
       render json: @games
     else
-      render json: {error: 'create user'}
+      render json: { error: 'create user' }
     end
-
   end
 
   def create
@@ -33,7 +32,7 @@ class GamesController < ApplicationController
       render :edit
     end
   end
- 
+
   private
 
   def game_required_params

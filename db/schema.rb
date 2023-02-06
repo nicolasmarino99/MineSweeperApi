@@ -10,50 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_06_030600) do
+ActiveRecord::Schema[7.0].define(version: 20_230_206_030_600) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "cells", force: :cascade do |t|
-    t.integer "row"
-    t.integer "column"
-    t.boolean "mine", default: false
-    t.boolean "revealed", default: false
-    t.boolean "flagged", default: false
-    t.bigint "game_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_cells_on_game_id"
+  create_table 'cells', force: :cascade do |t|
+    t.integer 'row'
+    t.integer 'column'
+    t.boolean 'mine', default: false
+    t.boolean 'revealed', default: false
+    t.boolean 'flagged', default: false
+    t.bigint 'game_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['game_id'], name: 'index_cells_on_game_id'
   end
 
-  create_table "games", force: :cascade do |t|
-    t.integer "rows"
-    t.integer "columns"
-    t.integer "mines"
-    t.datetime "finished_at"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "time"
-    t.string "difficulty"
-    t.index ["user_id"], name: "index_games_on_user_id"
+  create_table 'games', force: :cascade do |t|
+    t.integer 'rows'
+    t.integer 'columns'
+    t.integer 'mines'
+    t.datetime 'finished_at'
+    t.bigint 'user_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.datetime 'time'
+    t.string 'difficulty'
+    t.index ['user_id'], name: 'index_games_on_user_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.string "jti", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["jti"], name: "index_users_on_jti", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  create_table 'users', force: :cascade do |t|
+    t.string 'username'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'email', default: '', null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.string 'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.string 'jti', null: false
+    t.index ['email'], name: 'index_users_on_email', unique: true
+    t.index ['jti'], name: 'index_users_on_jti', unique: true
+    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
-  add_foreign_key "cells", "games"
-  add_foreign_key "games", "users"
+  add_foreign_key 'cells', 'games'
+  add_foreign_key 'games', 'users'
 end

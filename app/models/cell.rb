@@ -7,28 +7,31 @@ class Cell < ApplicationRecord
   validates :row, :column, numericality: { only_integer: true }
 
   def reveal
-    return if self.revealed || self.mine
-    self.update(revealed: true)
-    return if self.adjacent_mines > 0
-    self.adjacent_cells.each { |cell| cell.reveal }
+    return if revealed || mine
+
+    update(revealed: true)
+    return if adjacent_mines > 0
+
+    adjacent_cells.each { |cell| cell.reveal }
   end
 
   def adjacent_cells
     adjacents = []
-    adjacents << self.game.cells.find_by(row: self.row - 1, column: self.column - 1)
-    adjacents << self.game.cells.find_by(row: self.row - 1, column: self.column)
-    adjacents << self.game.cells.find_by(row: self.row - 1, column: self.column + 1)
-    adjacents << self.game.cells.find_by(row: self.row, column: self.column - 1)
-    adjacents << self.game.cells.find_by(row: self.row, column: self.column + 1)
-    adjacents << self.game.cells.find_by(row: self.row + 1, column: self.column - 1)
-    adjacents << self.game.cells.find_by(row: self.row + 1, column: self.column)
-    adjacents << self.game.cells.find_by(row: self.row + 1, column: self.column + 1)
+    adjacents << game.cells.find_by(row: row - 1, column: column - 1)
+    adjacents << game.cells.find_by(row: row - 1, column:)
+    adjacents << game.cells.find_by(row: row - 1, column: column + 1)
+    adjacents << game.cells.find_by(row:, column: column - 1)
+    adjacents << game.cells.find_by(row:, column: column + 1)
+    adjacents << game.cells.find_by(row: row + 1, column: column - 1)
+    adjacents << game.cells.find_by(row: row + 1, column:)
+    adjacents << game.cells.find_by(row: row + 1, column: column + 1)
     adjacents.compact
-    end
+  end
 
-    def adjacent_mines
-      self.adjacent_cells.select { |cell| cell.mine }.count
-    end
+  def adjacent_mines
+    adjacent_cells.select { |cell| cell.mine }.count
+  end
+
   def flag
     update(status: :flagged)
   end

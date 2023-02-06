@@ -51,16 +51,15 @@ group :development do
   # gem "spring"
 end
 
+gem 'pry', '~> 0.14.2'
 
-gem "pry", "~> 0.14.2"
+gem 'jwt', '~> 2.7'
+gem 'rspec', '~> 3.12'
 
-gem "jwt", "~> 2.7"
-gem "rspec", "~> 3.12"
+gem 'devise', '~> 4.8'
 
-gem "devise", "~> 4.8"
+gem 'devise-jwt', '~> 0.10.0'
 
-gem "devise-jwt", "~> 0.10.0"
+gem 'rack-cors', '~> 1.1'
 
-gem "rack-cors", "~> 1.1"
-
-gem "fast_jsonapi", "~> 1.5"
+gem 'fast_jsonapi', '~> 1.5'
