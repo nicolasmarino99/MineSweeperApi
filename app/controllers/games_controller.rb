@@ -1,25 +1,27 @@
 class GamesController < ApplicationController
+  def index
+    if current_user
+      @games = current_user.games.all
+      render json: @games
+    else
+      render json: {error: 'create user'}
+    end
+
+  end
+
   def create
-    @game = if params[:difficulty] == 'easy'
-              current_user.games.create(rows: 5, columns: 5, mines: 5)
-            elsif params[:difficulty] == 'intermediate'
-                current_user.games.create(rows: 10, columns: 10, mines: 10)
-            elsif params[:difficulty] == 'hard'
-                current_user.games.create(rows: 15, columns: 15, mines: 15)
-            elsif params[:difficulty] == 'custom'
-                current_user.games.create(rows: params[:rows], columns: params[:cols], mines: params[:mines])
-            end
-    @game.user = current_user
+    @game = current_user.games.create(game_params)
     @game.generate_cells
     if @game.save
       redirect_to game_path(@game)
     else
-      render :new
+      render json: @game
     end
   end
 
   def show
     @game = Game.find(params[:id])
+    render json: @game
   end
 
   def update
@@ -31,10 +33,23 @@ class GamesController < ApplicationController
       render :edit
     end
   end
-
+ 
   private
 
+  def game_required_params
+    params.require(:game).permit(:difficulty, :cols, :rows, :mines, :id)
+  end
+
   def game_params
-    params.require(:game).permit(:difficulty, :cols, :rows, :mines)
+    case params[:difficulty]
+    when 'easy'
+      { rows: 5, columns: 5, mines: 5 }
+    when 'intermediate'
+      { rows: 10, columns: 10, mines: 10 }
+    when 'hard'
+      { rows: 15, columns: 15, mines: 15 }
+    when 'custom'
+      { rows: params[:rows], columns: params[:cols], mines: params[:mines] }
+    end
   end
 end

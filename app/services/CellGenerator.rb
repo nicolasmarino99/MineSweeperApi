@@ -5,11 +5,11 @@ class CellGenerator
     @game = game
     @cells = []
   end
-  
+
   def generate_cells
     (0...game.rows).each do |row|
       (0...game.columns).each do |column|
-        cells << game.cells.create(row: row, column: column)
+        cells << game.cells.create(row:, column:)
       end
     end
   end

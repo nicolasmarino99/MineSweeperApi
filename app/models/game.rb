@@ -8,7 +8,7 @@ class Game < ApplicationRecord
   before_create :set_start_time
   after_update :set_end_time, if: :game_over?
   after_create :generate_cells
-
+  # validates :username, presence: true, uniqueness: true
   def set_start_time
     @time_calculator = TimeCalculator.new
     self.time = 0

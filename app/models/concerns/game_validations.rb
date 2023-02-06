@@ -3,8 +3,8 @@ module GameValidations
 
   included do
     validates :rows, :columns, :mines, presence: true
-    validates_numericality_of :rows, greater_than: 1, greater_than_or_equal_to: 100
-    validates_numericality_of :columns, greater_than: 1, greater_than_or_equal_to: 100
+    validates_numericality_of :rows, greater_than: 1, less_than_or_equal_to: 100
+    validates_numericality_of :columns, greater_than: 1, less_than_or_equal_to: 100
     validate :mines_do_not_exceed_cells
   end
 
