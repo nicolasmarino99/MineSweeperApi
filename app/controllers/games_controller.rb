@@ -41,7 +41,6 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    binding.pry
     case params[:difficulty]
     when 'easy'
       { rows: 5, columns: 5, mines: 5, difficulty: params[:difficulty] }
