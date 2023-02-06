@@ -12,7 +12,7 @@ gem 'pg', '~> 1.1'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
 
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+# Build JSON APIs with ease [https://github.com/rails/jbuilder] f
 # gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
@@ -36,12 +36,31 @@ gem 'bootsnap', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem "rack-cors"
 
+gem 'rswag-api'
+gem 'rswag-ui'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'rspec-rails'
+  gem 'rswag-specs'
 end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+
+
+gem "pry", "~> 0.14.2"
+
+gem "jwt", "~> 2.7"
+gem "rspec", "~> 3.12"
+
+gem "devise", "~> 4.8"
+
+gem "devise-jwt", "~> 0.10.0"
+
+gem "rack-cors", "~> 1.1"
+
+gem "fast_jsonapi", "~> 1.5"
