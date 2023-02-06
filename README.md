@@ -5,7 +5,9 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+## Live version
+
+* https://fragrant-hill-5118.fly.dev/api-docs/index.html 
 
 * System dependencies
 
