@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+
   def index
     if current_user
       @games = current_user.games.all
@@ -40,9 +41,10 @@ class GamesController < ApplicationController
   end
 
   def game_params
+    binding.pry
     case params[:difficulty]
     when 'easy'
-      { rows: 5, columns: 5, mines: 5 }
+      { rows: 5, columns: 5, mines: 5, difficulty: params[:difficulty] }
     when 'intermediate'
       { rows: 10, columns: 10, mines: 10 }
     when 'hard'
